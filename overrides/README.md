@@ -1,13 +1,13 @@
 # hpcc-values
 
-# noroxie.yaml
+## noroxie.yaml
 Removes roxie and the roxie eclagent
 
-# nothor.yaml
+## nothor.yaml
 Removes thor
 
-# tworoxies.yaml
+## tworoxies.yaml
 Adds another roxie
 
-# twothors.yaml
+## twothors.yaml
 Adds another thor
