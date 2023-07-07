@@ -11,3 +11,8 @@ Adds another roxie
 
 ## twothors.yaml
 Adds another thor
+
+## How to use
+1. Download HPCC Platform source
+2. Go to the directory
+3. Deploy hpcc
