@@ -1,0 +1,119 @@
+thor:
+- name: thor
+  prefix: thor
+  #numWorkers: 2
+  numWorkers: 1
+  #maxJobs: 4
+  maxJobs: 2 
+  maxGraphs: 2
+  #maxGraphStartupTime: 600
+  #numWorkersPerPod: 1
+  #managerResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #workerResources:
+  #  cpu: "4"
+  #  memory: "4G"
+  #workerMemory:
+  #  query: "3G"
+  #  thirdParty: "500M"
+  #eclAgentResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #egress: engineEgress
+- name: thor2
+  prefix: thor2
+  #numWorkers: 2
+  numWorkers: 1
+  #maxJobs: 4
+  maxJobs: 2 
+  maxGraphs: 2
+  #maxGraphStartupTime: 600
+  #numWorkersPerPod: 1
+  #managerResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #workerResources:
+  #  cpu: "4"
+  #  memory: "4G"
+  #workerMemory:
+  #  query: "3G"
+  #  thirdParty: "500M"
+  #eclAgentResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #egress: engineEgress
+eclagent:
+- name: hthor
+  ## replicas indicates how many eclagent pods should be started
+  replicas: 1
+  ## maxActive controls how many workunits may be active at once (per replica)
+  maxActive: 4
+  ## prefix may be used to set a filename prefix applied to any relative filenames used by jobs submitted to this queue
+  prefix: hthor
+  ## Set to false if you want to launch each workunit in its own container, true to run as child processes in eclagent pod
+  useChildProcesses: false
+  ## type may be 'hthor' (the default) or 'roxie', to specify that the roxie engine rather than the hthor engine should be used for eclagent workunit processing
+  type: hthor
+  ## The following resources apply to child hThor pods when useChildProcesses=false, otherwise they apply to hThor pod.
+  #resources:
+  #  cpu: "1"
+  #  memory: "1G"
+  #egress: engineEgress
+
+eclccserver:
+- name: myeclccserver
+  replicas: 1
+  useChildProcesses: false
+  childProcessTimeLimit: 0
+  maxActive: 4
+  listen: []
+
+roxie:
+- name: roxie
+  disabled: false
+  prefix: roxie
+  services:
+  - name: roxie
+    servicePort: 9876
+    listenQueue: 200
+    numThreads: 30
+    visibility: local
+    # Can override ingress rules for each service if desired - for example to add no additional ingress permissions you can use
+    # ingress: []
+  ## replicas indicates the number of replicas per channel
+  replicas: 1
+  numChannels: 2
+  ## Set localAgent to true for a scalable cluster of "single-node" roxie servers, each implementing all channels locally
+  localAgent: false
+  ## Adjust traceLevel to taste (1 is default)
+  traceLevel: 1
+  ## set totalMemoryLimit to indicate how much memory is preallocated for roxie row data
+  # totalMemoryLimit: "1Gi" # Default 1Gi, capped to 75% of resources.memory if defined.
+  ## Set mtuPayload to the maximum amount of data Roxie will put in a single packet. This should be just less than the system MTU. Default is 1400
+  # mtuPayload: 3800
+
+  ## resources specifies the resources required by each agent pod
+  #resources:
+  #  cpu: "1"
+  #  memory: "1G"
+
+  ## Set serverReplicas to indicate a separate replicaSet of roxie servers, with agent pods not acting as servers
+  serverReplicas: 0
+  ## If serverReplicas is set, the resources required for the server pods can be configured separately from the agent (channel) pods
+  #serverResources:
+  #  cpu: "1"
+  #  memory: "4Gi"
+  #channelResources:
+  #  cpu: "2"
+  #  memory: "8Gi"
+
+  # Roxie may take a while to start up if there are a lot of queries to load. Yuo may need to 
+  #override the default startup/readiness probing by setting these values
+  #minStartupTime: 30      # How long to wait before initiating startup probing
+  #maxStartupTime: 600     # Maximum time to wait for startup to complete before failing
+  topoServer:
+    replicas: 1
+  #directAccessPlanes: []  #add direct access planes that roxie will read from without copying the data to its default data plane
+  #ldapUser: roxie_file_access    #add system username for accessing files
+  #egress: engineEgress
