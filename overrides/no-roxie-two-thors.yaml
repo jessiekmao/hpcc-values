@@ -1,0 +1,72 @@
+roxie:
+- name: roxie
+  disabled: true
+
+  ## Set serverReplicas to indicate a separate replicaSet of roxie servers, with agent pods not acting as servers
+  serverReplicas: 0
+  ## If serverReplicas is set, the resources required for the server pods can be configured separately from the agent (channel) pods
+  #serverResources:
+  #  cpu: "1"
+  #  memory: "4Gi"
+  #channelResources:
+  #  cpu: "2"
+  #  memory: "8Gi"
+eclagent:
+- name: hthor
+  ## replicas indicates how many eclagent pods should be started
+  replicas: 1
+  ## maxActive controls how many workunits may be active at once (per replica)
+  maxActive: 4
+  ## prefix may be used to set a filename prefix applied to any relative filenames used by jobs submitted to this queue
+  prefix: hthor
+  ## Set to false if you want to launch each workunit in its own container, true to run as child processes in eclagent pod
+  useChildProcesses: false
+  ## type may be 'hthor' (the default) or 'roxie', to specify that the roxie engine rather than the hthor engine should be used for eclagent workunit processing
+  type: hthor
+  ## The following resources apply to child hThor pods when useChildProcesses=false, otherwise they apply to hThor pod.
+  #resources:
+  #  cpu: "1"
+  #  memory: "1G"
+  #egress: engineEgress
+
+thor:
+- name: thor
+  prefix: thor
+  numWorkers: 2
+  maxJobs: 4
+  maxGraphs: 2
+  #maxGraphStartupTime: 600
+  #numWorkersPerPod: 1
+  #managerResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #workerResources:
+  #  cpu: "4"
+  #  memory: "4G"
+  #workerMemory:
+  #  query: "3G"
+  #  thirdParty: "500M"
+  #eclAgentResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #egress: engineEgress
+- name: thor10
+  prefix: thor10
+  numWorkers: 10
+  maxJobs: 4
+  maxGraphs: 2
+  #maxGraphStartupTime: 600
+  #numWorkersPerPod: 1
+  #managerResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #workerResources:
+  #  cpu: "4"
+  #  memory: "4G"
+  #workerMemory:
+  #  query: "3G"
+  #  thirdParty: "500M"
+  #eclAgentResources:
+  #  cpu: "1"
+  #  memory: "2G"
+  #egress: engineEgress
