@@ -9,3 +9,9 @@
 
 ### You can change the version to whatever you want.
 ### Also, if you would like to change the file you want to deploy, then just replace hthor.yaml, or get rid of it if you want to deploy common-values.yaml by itself.
+
+## cost.yaml
+### Cost.yaml allows you to deploy the cost configuration by itself
+
+## esdl.yaml
+### Esdl.yaml

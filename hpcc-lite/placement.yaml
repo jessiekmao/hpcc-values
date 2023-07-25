@@ -1,0 +1,63 @@
+placements:
+- pods: ["eclwatch","roxie-workunit","^compile-.*$","mydali"]
+  placement:
+    nodeSelector:
+      name: npone
+
+# "nodeSelector" and "tolerations" example:
+
+- pods: ["thorworker-", "thor-thoragent", "thormanager-","thor-eclagent","hthor-"]
+  placement:
+    nodeSelector:
+      name: nptwo
+    tolerations:
+    - key: "name"
+      operator: "Equal"
+      value: "nptwo"
+      effect: "NoSchedule"
+
+# "affinity" example:
+
+- pods: ["thorworker-.*"]
+  placement:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/e2e-az-name
+              operator: In
+              values:
+              - e2e-az1
+              - e2e-az2
+
+# "schedulerName" example, above "affinity" settings can be in this file. Caution "affinity" in "schedulerName" file is only supported in Kubernetes 1.20.0 beta and later.
+
+- pods: ["target:roxie"]
+  placement:
+    schedulerName: "my-scheduler"
+# The settings will be applied to all thor pods/jobs and myeclccserver pod and job
+- pods: ["target:myeclccserver", "type:thor"]
+  placement:
+    nodeSelector:
+      app: "tf-gpu"
+    tolerations:
+    - key: "gpu"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+# "topologySpreadConstraints" example, there are two node pools which have "hpcc=nodepool1" and "hpcc=nodepool2" respectively. The Roxie pods will be evenly scheduled on the two node pools. After deployment verify it with
+
+# kubectl get pod -o wide | grep roxie
+
+Placements code:
+- pods: ["type:roxie"]
+  placement:
+    topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: hpcc
+      whenUnsatisfiable: ScheduleAnyway
+      labelSelector:
+        matchLabels:
+          roxie-cluster: "roxie"
