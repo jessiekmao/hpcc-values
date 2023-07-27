@@ -116,6 +116,9 @@ dali:
   #  cpu: "1"
   #  memory: "4G"
 
+# At least one engine is needed to execute sql->ecl queries. You can use whatever engine you want depending on your goal.
+# If you’re just going to execute simple sql, hthor/thor should be enough. If you intend to perform SQL Call <function>, you’ll need to have a roxie.
+
 eclagent:
 - name: hthor
   ## replicas indicates how many eclagent pods should be started
