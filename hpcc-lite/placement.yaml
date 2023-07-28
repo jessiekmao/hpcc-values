@@ -1,8 +1,16 @@
 placements:
-- pods: ["eclwatch","roxie-workunit","^compile-.*$","mydali"]
-  placement:
-    nodeSelector:
-      name: npone
+   - pods: ["all"]
+     tolerations:
+     - key: "group"
+       operator: "Equal"
+       value: "hpcc"
+       effect: "NoSchedule"
+   - pods: ["type:thor"]
+     tolerations:
+     - key: "gpu"
+       operator: "Equal"
+       value: "true"
+       effect: "NoSchedule"
 
 # "nodeSelector" and "tolerations" example:
 
