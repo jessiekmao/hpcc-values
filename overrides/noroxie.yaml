@@ -1,3 +1,8 @@
+eclagent:
+- name: hthor
+  disabled: true
+  maxActive: 1
+
 roxie:
 - name: roxie
   disabled: true

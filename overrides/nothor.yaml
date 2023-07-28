@@ -1,1 +1,6 @@
+eclagent:
+- name: hthor
+  disabled: true
+  maxActive: 1
+
 thor: []
