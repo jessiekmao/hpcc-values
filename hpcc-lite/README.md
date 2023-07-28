@@ -37,3 +37,14 @@ Esdl.yaml deploys esdl-sandbox
 
 ## sql2ecl.yaml
 Sql2ecl.yaml deploys sql2ecl
+
+## placement.yaml
+Placement.yaml is used for the placement function in Azure
+
+## hpcc-deployment.bat
+This file is an example of how you can use a file to deploy everything on windows.
+You can use it by uncommenting or adding the files you want to deploy.
+
+## hpcc-deployment.sh
+This file is an example of how you can use a file to deploy everything on windows.
+You can use it by uncommenting or adding the files you want to deploy.

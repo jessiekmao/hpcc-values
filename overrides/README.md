@@ -22,3 +22,11 @@ This file deploys hthor, two thors, and roxie-workunit, but removes roxie.
 
 ## nothor-tworoxies.yaml
 This file deploys hthor, roxie-workunit, and two roxies.
+
+## hpcc-deployment.bat
+This file is an example of how you can use a file to deploy everything on windows.
+You can use it by uncommenting or adding the files you want to deploy.
+
+## hpcc-deployment.sh
+This file is an example of how you can use a file to deploy everything on windows.
+You can use it by uncommenting or adding the files you want to deploy.
