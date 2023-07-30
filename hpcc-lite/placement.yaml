@@ -1,3 +1,5 @@
+# To be able to use this file, node pools need to have labels and taint
+
 placements:
    - pods: ["all"]
      tolerations:
@@ -6,6 +8,8 @@ placements:
        value: "hpcc"
        effect: "NoSchedule"
    - pods: ["type:thor"]
+    nodeSelector:
+      nodetype: "gpu"
      tolerations:
      - key: "gpu"
        operator: "Equal"
