@@ -5,6 +5,9 @@
 2. Go to the helm directory
 3. Deploy hpcc using the helm install command
 
+### Example:
+helm install mycluster hpcc --set global.image.version=\<version\> -f \<base directory\>
+
 ## noroxie.yaml
 This file removes roxie and the roxie eclagent
 
