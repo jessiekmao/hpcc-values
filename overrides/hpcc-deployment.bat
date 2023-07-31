@@ -5,6 +5,7 @@ rem For example, you can change -f noroxie-twothors.yaml to -f ..\..\hpcc-values
 
 helm install mycluster ./hpcc --set global.image.version=9.2.2 ^
  -f noroxie-twothors.yaml
+rem -f localfile.yaml
 rem -f nothor-tworoxies.yaml
 rem -f noroxie.yaml
 rem -f tworoxies.yaml
