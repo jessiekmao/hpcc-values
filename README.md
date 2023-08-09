@@ -8,6 +8,10 @@ Overrides uses files to override the default values.yaml which makes it useful f
 ## [Hpcc-lite](./hpcc-lite/)
 Hpcc-lite uses a custom values.yaml file which is useful as it allows you to create whatever configurations you want. It does requrie more work, however, because you need to create the files from scratch.
 
+## HPCC-Lite Script
+It should be moved to helm in the cloned HPCC-Platform source.
+HPCC-Lite Script is a python script that automatically clones yaml files for you. Just make sure to put in the correct information in the user defined variables.
+
 ## Before you deploy
 Make sure you downloaded the Chart and repo. For hpcc-lite, make sure you removed the values.yaml file
 
